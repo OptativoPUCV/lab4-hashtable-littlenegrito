@@ -48,7 +48,7 @@ int resolverColision(HashMap* map, int pos){
 }
 void insertMap(HashMap * map, char * key, void * value) {
   int pos = hash(key, map->capacity);
-  if(map->buckets[pos] == NULL || is_equal(map->buckets[pos]->key, key){ // condicion
+  if(map->buckets[pos] == NULL || is_equal(map->buckets[pos]->key, key)){ // condicion
     map->buckets[pos] = createPair(key, value);
     map->size++; // aumentar cantidad de elementos
   }
