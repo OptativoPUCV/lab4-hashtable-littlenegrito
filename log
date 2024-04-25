@@ -111,3 +111,25 @@ test.c:(.text+0xa38): undefined reference to `insertMap'
 collect2: error: ld returned 1 exit status
 Compilation failed
 96f8b09
+Thu 25 Apr 2024 07:13:05 PM UTC: 
+ hashmap.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccx3AFPH.o: in function `insert_test1':
+test.c:(.text+0x7ab): undefined reference to `insertMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccx3AFPH.o: in function `insert_test2':
+test.c:(.text+0x8c2): undefined reference to `insertMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccx3AFPH.o: in function `insert_test3':
+test.c:(.text+0x932): undefined reference to `insertMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccx3AFPH.o: in function `insert_test4':
+test.c:(.text+0x9c8): undefined reference to `insertMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: test.c:(.text+0xa58): undefined reference to `insertMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccx3AFPH.o:test.c:(.text+0xb06): more undefined references to `insertMap' follow
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccx3AFPH.o: in function `search_test1':
+test.c:(.text+0xb82): undefined reference to `searchMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccx3AFPH.o: in function `search_test2':
+test.c:(.text+0xc43): undefined reference to `searchMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccx3AFPH.o: in function `search_test3':
+test.c:(.text+0xcc7): undefined reference to `searchMap'
+collect2: error: ld returned 1 exit status
+Compilation failed
+8f11e8a

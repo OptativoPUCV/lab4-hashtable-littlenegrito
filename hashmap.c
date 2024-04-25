@@ -68,7 +68,7 @@ void enlarge(HashMap * map) {
 
 }
 
-/*
+
 HashMap * createMap(long capacity) {
   HashMap * map = (HashMap *)malloc(sizeof(HashMap)); // reservar memoria
   map->buckets = (Pair **) calloc(capacity, sizeof(Pair *)); // reservar memoria casilla
@@ -77,14 +77,14 @@ HashMap * createMap(long capacity) {
   map->current = -1; // inicializar el indice actual
   return map;
 }
-*/
+
 
 void eraseMap(HashMap * map,  char * key) {    
 
 
 }
 
-Pair * searchMap(HashMap * map,  char * key) {   
+/*Pair * searchMap(HashMap * map,  char * key) {   
   if(map == NULL || key==NULL) return NULL;
   int pos = hash(key, map->capacity);
   
@@ -97,7 +97,7 @@ Pair * searchMap(HashMap * map,  char * key) {
   }
   return NULL;
 }
-
+*/
 
 Pair * firstMap(HashMap * map) {
 
