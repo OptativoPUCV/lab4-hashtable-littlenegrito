@@ -8,3 +8,14 @@ Thu 25 Apr 2024 06:47:43 PM UTC:
  tests:  1|5
 total_score: 10/70
 77b98ea
+Thu 25 Apr 2024 06:54:15 PM UTC: 
+ hashmap.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:49:20: error: implicit declaration of function ‘resolverColision’ [-Werror=implicit-function-declaration]
+   49 |     int nuevaPos = resolverColision(map, pos);
+      |                    ^~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+5da204b
