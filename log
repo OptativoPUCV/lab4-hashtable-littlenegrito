@@ -133,3 +133,14 @@ test.c:(.text+0xcc7): undefined reference to `searchMap'
 collect2: error: ld returned 1 exit status
 Compilation failed
 8f11e8a
+Thu 25 Apr 2024 07:13:56 PM UTC: 
+ hashmap.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+In file included from test.c:4:
+hashmap.c: In function ‘searchMap’:
+hashmap.c:91:7: error: unused variable ‘pos’ [-Werror=unused-variable]
+   91 |   int pos = hash(key, map->capacity);
+      |       ^~~
+cc1: all warnings being treated as errors
+Compilation failed
+15542cd
