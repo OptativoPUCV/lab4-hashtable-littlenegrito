@@ -37,6 +37,7 @@ int is_equal(void* key1, void* key2){
     if(strcmp((char*)key1,(char*)key2) == 0) return 1;
     return 0;
 }
+/*
 int resolverColision(HashMap* map, int pos){
   int copiaPos = pos; // preservar la posicion original
   pos = (pos+1)%map->capacity;
@@ -46,6 +47,7 @@ int resolverColision(HashMap* map, int pos){
   }
   return -1;
 }
+
 void insertMap(HashMap * map, char * key, void * value) {
   int pos = hash(key, map->capacity);
   if(map->buckets[pos] == NULL || is_equal(map->buckets[pos]->key, key)){ // condicion
@@ -58,6 +60,7 @@ void insertMap(HashMap * map, char * key, void * value) {
     map->size++; // aumentar cantidad de elementos
   }
 }
+*/
 
 void enlarge(HashMap * map) {
     enlarge_called = 1; //no borrar (testing purposes)
@@ -65,7 +68,7 @@ void enlarge(HashMap * map) {
 
 }
 
-
+/*
 HashMap * createMap(long capacity) {
   HashMap * map = (HashMap *)malloc(sizeof(HashMap)); // reservar memoria
   map->buckets = (Pair **) calloc(capacity, sizeof(Pair *)); // reservar memoria casilla
@@ -74,6 +77,7 @@ HashMap * createMap(long capacity) {
   map->current = -1; // inicializar el indice actual
   return map;
 }
+*/
 
 void eraseMap(HashMap * map,  char * key) {    
 
@@ -93,6 +97,7 @@ Pair * searchMap(HashMap * map,  char * key) {
   }
   return NULL;
 }
+
 
 Pair * firstMap(HashMap * map) {
 
