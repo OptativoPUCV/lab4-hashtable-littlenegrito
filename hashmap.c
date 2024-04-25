@@ -48,22 +48,14 @@ int resolverColision(HashMap* map, int pos){
 }
 void insertMap(HashMap * map, char * key, void * value) {
   int pos = hash(key, map->capacity);
-  if((map->buckets[pos] = NULL) || (strcmp(map->buckets[pos]->key, "-1") == 1)){ // condicion
-    Pair* nuevoElem = malloc(sizeof(Pair));
-    nuevoElem->value = value;
-      nuevoElem->key = key;
-      map->buckets[pos] = nuevoElem;
-      map->size += 1;
-
+  if(map->buckets[pos] == NULL || strcmp(map->buckets[pos]->key, "-1") == 1){ // condicion
+    map->buckets[pos] = createPair(key, value);
+    map->size++; // aumentar cantidad de elementos
   }
   else{
     int nuevaPos = resolverColision(map, pos); // encontrar nueva posicion
-    Pair* nuevoElem = malloc(sizeof(Pair));
-    nuevoElem->value = value;
-    nuevoElem->key = key;
-    map->buckets[nuevaPos] = nuevoElem;
-    map->size += 1;
-
+    map->buckets[nuevaPos] = createPair(key, value);
+    map->size++; // aumentar cantidad de elementos
   }
 }
 
