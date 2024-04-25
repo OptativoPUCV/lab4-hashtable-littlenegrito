@@ -69,13 +69,12 @@ void enlarge(HashMap * map) {
   map->buckets = (Pair **)calloc(map->capacity, sizeof(Pair *)); // crear nuevo arreglo con nueva capacidad
   for(int i = 0; i < originalCapacity; i++){ // recorrer para mover los buckets nuevos 
     if (oldBuckets[i] != NULL && oldBuckets[i]->key != NULL) {
-      insertMap(map, oldBuckets[i]->key, oldBuckets[i]->value);
-      free(oldBuckets[i]);
+      insertMap(map, oldBuckets[i]->key, oldBuckets[i]->value); // insertar mismos elementos en nuevo mapa
+      free(oldBuckets[i]); // limpiar pair
     }
   }
   free(oldBuckets); // limpiar el arreglo
   enlarge_called = 1; //no borrar (testing purposes)
-
 }
 
 
