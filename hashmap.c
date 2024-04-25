@@ -37,53 +37,34 @@ int is_equal(void* key1, void* key2){
     if(strcmp((char*)key1,(char*)key2) == 0) return 1;
     return 0;
 }
-long resuelveColision(HashMap *map, int posicion, char *key) {
-    // Verificar si la posición está dentro de los límites
-    if (posicion < 0 || posicion >= map->capacity)
-        return -1; // Valor de retorno para indicar error
-
-    // Usar resolución de colisiones lineal
-    int i = 1; // Contador para el desplazamiento
-    long index = (posicion + i) % map->capacity; // Calcular el nuevo índice
-
-    // Buscar el siguiente índice vacío o el índice con la misma clave
-    while (map->buckets[index] != NULL && !is_equal(map->buckets[index]->key, key)) {
-        i++;
-        index = (posicion + i) % map->capacity;
-    }
-
-    return index; // Devolver el índice encontrado
+int resolverColision(HashMap* map, int pos){
+  int copiaPos = pos; // preservar la posicion original
+  pos = (pos+1)%map->capacity;
+  while(pos != copiaPos){ // recorrer mapa
+    if(map->buckets[pos]== NULL || map->buckets[pos]->key == NULL) return pos;
+    pos = (pos+1)%map->capacity;
+  }
+  return -1;
 }
-
-
 void insertMap(HashMap * map, char * key, void * value) {
-    if(map == NULL || key == NULL)
-        return;
+  int pos = hash(key, map->capacity);
+  if((map->buckets[pos] = NULL) || (strcmp(map->buckets[pos]->key, "-1") == 1)){ // condicion
+    Pair* nuevoElem = malloc(sizeof(Pair));
+    nuevoElem->value = value;
+      nuevoElem->key = key;
+      map->buckets[pos] = nuevoElem;
+      map->size += 1;
 
-    long index = hash(key, map->capacity);
+  }
+  else{
+    int nuevaPos = resolverColision(map, pos); // encontrar nueva posicion
+    Pair* nuevoElem = malloc(sizeof(Pair));
+    nuevoElem->value = value;
+    nuevoElem->key = key;
+    map->buckets[nuevaPos] = nuevoElem;
+    map->size += 1;
 
-    // If the bucket at the index is empty, create a new pair and insert it
-    if(map->buckets[index] == NULL) 
-    {
-        map->buckets[index] = createPair(key, value);
-        map->size++;
-    } 
-    else 
-    {
-        long current = index; // current indica la posición actual en la tabla hash
-        while(map->buckets[current] != NULL) 
-        {
-            if(is_equal(map->buckets[current]->key, key)) 
-            {
-                map->buckets[current]->value = value;
-                return;
-            }
-            current = resuelveColision(map, current, key); // Actualizamos current según la resolución de colisiones
-        }
-        Pair *new_pair = createPair(key, value);
-        map->buckets[current] = new_pair; // Insertamos el nuevo par en la posición encontrada
-        map->size++;
-    }
+  }
 }
 
 void enlarge(HashMap * map) {
