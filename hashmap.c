@@ -40,15 +40,15 @@ int is_equal(void* key1, void* key2){
 int resolverColision(HashMap* map, int pos){
   int copiaPos = pos; // preservar la posicion original
   pos = (pos+1)%map->capacity;
-  while(pos != copiaPos){ // recorrer mapa
+  while(pos != copiaPos){ // recorrer mapa hasta llegar a la posicion inicial
     if(map->buckets[pos]== NULL || map->buckets[pos]->key == NULL) return pos;
-    pos = (pos+1)%map->capacity;
+    pos = (pos+1)%map->capacity; // avanzar posicion
   }
   return -1;
 }
 void insertMap(HashMap * map, char * key, void * value) {
   int pos = hash(key, map->capacity);
-  if(map->buckets[pos] == NULL || strcmp(map->buckets[pos]->key, "-1") == 1){ // condicion
+  if(map->buckets[pos] == NULL || is_equal(map->buckets[pos]->key, key){ // condicion
     map->buckets[pos] = createPair(key, value);
     map->size++; // aumentar cantidad de elementos
   }
@@ -81,9 +81,17 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
+  if(map == NULL || key==NULL) return NULL;
+  int pos = hash(key, map->capacity);
+  while(map->buckets[pos]== NULL || map->buckets[pos]->key == NULL){
+    if(is_equal(map->buckets[pos]->key, key)){
+      map->current = pos;
+      return map->buckets[pos];
+    }
+    pos = (pos+1)%map->capacity;
+  }
 
-
-    return NULL;
+  return NULL;
 }
 
 Pair * firstMap(HashMap * map) {

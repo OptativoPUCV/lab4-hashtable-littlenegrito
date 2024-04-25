@@ -46,3 +46,17 @@ Thu 25 Apr 2024 07:03:38 PM UTC:
  tests:  5|4
 total_score: 30/70
 b825b0f
+Thu 25 Apr 2024 07:08:23 PM UTC: 
+ hashmap.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+In file included from test.c:4:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:51:72: error: expected ‘)’ before ‘{’ token
+   51 |   if(map->buckets[pos] == NULL || is_equal(map->buckets[pos]->key, key){ // condicion
+      |     ~                                                                  ^
+      |                                                                        )
+hashmap.c:60:1: error: expected expression before ‘}’ token
+   60 | }
+      | ^
+Compilation failed
+48e47e8
