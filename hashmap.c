@@ -48,7 +48,7 @@ int resolverColision(HashMap* map, int pos){
 }
 void insertMap(HashMap * map, char * key, void * value) {
   int pos = hash(key, map->capacity);
-  if(map->buckets[pos] == NULL ||  strcmp(map->buckets[pos]->key, "-1") == 1){ // condicion
+  if(map->buckets[pos] == NULL || is_equal(map->buckets[pos]->key, key)){ // condicion
     map->buckets[pos] = createPair(key, value);
     map->size++; // aumentar cantidad de elementos
   }
@@ -83,12 +83,13 @@ void eraseMap(HashMap * map,  char * key) {
 Pair * searchMap(HashMap * map,  char * key) {   
   if(map == NULL || key==NULL) return NULL;
   int pos = hash(key, map->capacity);
-  while(map->buckets[pos]== NULL || map->buckets[pos]->key != NULL){
-    if(is_equal(map->buckets[pos]->key, key)){
-      map->current = pos;
-      return map->buckets[pos];
+  
+  while(map->buckets[pos]== NULL && map->buckets[pos]->key == NULL){
+    if(is_equal(map->buckets[pos]->key, key)){ // si la clave coincide
+      map->current = pos; // actualizamos el indice actual
+      return map->buckets[pos]; // retornamos el par
     }
-    pos = (pos+1)%map->capacity;
+    pos = (pos+1)%map->capacity; // avanzamos posicion
   }
   return NULL;
 }
