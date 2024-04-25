@@ -80,7 +80,17 @@ HashMap * createMap(long capacity) {
 
 
 void eraseMap(HashMap * map,  char * key) {    
-
+  int pos = hash(key, map->capacity);
+  while(map->buckets[pos]!= NULL && map->buckets[pos]->key != NULL){
+    if(is_equal(map->buckets[pos]->key, key)){ // si coinciden claves borramos la pareja de datos y le asignamos NULL
+      free(map->buckets[pos]->key);
+      free(map->buckets[pos]->value);
+      map->buckets[pos]->key = NULL;
+      map->buckets[pos]->value = NULL;
+      return;
+    }
+    pos = (pos+1)%map->capacity; // avanzar posicion
+  }
 
 }
 
