@@ -37,20 +37,26 @@ int is_equal(void* key1, void* key2){
     if(strcmp((char*)key1,(char*)key2) == 0) return 1;
     return 0;
 }
-
-
+int resolverColision(HashMap* map, int pos){
+  int copiaPos = pos; // preservar la posicion original
+  pos = (pos+1)%map->capacity;
+  while(pos != copiaPos){ // recorrer mapa
+    if(map->buckets[pos]== NULL || map->buckets[pos]->key == NULL) return pos;
+    pos = (pos+1)%map->capacity;
+  }
+  return -1;
+}
 void insertMap(HashMap * map, char * key, void * value) {
   int pos = hash(key, map->capacity);
-  if((map->buckets[pos] = NULL) || (strcmp(map->buckets[pos]->key, "NULL") == 0)){
+  if((map->buckets[pos] = NULL) || (strcmp(map->buckets[pos]->key, "NULL") == 0)){ // condicion
     map->buckets[pos] = createPair(key, value);
-    map->size++;
+    map->size++; // aumentar cantidad de elementos
   }
   else{
-    int nuevaPos = resolverColision(map, pos);
+    int nuevaPos = resolverColision(map, pos); // encontrar nueva posicion
     map->buckets[nuevaPos] = createPair(key, value);
-    map->size++;
+    map->size++; // aumentar cantidad de elementos
   }
-
 }
 
 void enlarge(HashMap * map) {
@@ -61,11 +67,11 @@ void enlarge(HashMap * map) {
 
 
 HashMap * createMap(long capacity) {
-  HashMap * map = (HashMap *)malloc(sizeof(HashMap));
-  map->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
-  map->capacity = capacity;
-  map->size = 0;
-  map->current = -1;
+  HashMap * map = (HashMap *)malloc(sizeof(HashMap)); // reservar memoria
+  map->buckets = (Pair **) calloc(capacity, sizeof(Pair *)); // reservar memoria casilla
+  map->capacity = capacity; // asignar la capacidad
+  map->size = 0; // inicializar el tamaño
+  map->current = -1; // inicializar el indice actual
   return map;
 }
 
