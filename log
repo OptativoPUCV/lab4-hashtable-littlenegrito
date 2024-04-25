@@ -197,3 +197,9 @@ hashmap.c:68:17: error: operation on ‘map->capacity’ may be undefined [-Werr
 cc1: all warnings being treated as errors
 Compilation failed
 2a1006b
+Thu 25 Apr 2024 07:27:28 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  17|0
+total_score: 70/70
+baac721

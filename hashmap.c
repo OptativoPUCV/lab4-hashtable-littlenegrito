@@ -65,7 +65,7 @@ void insertMap(HashMap * map, char * key, void * value) {
 void enlarge(HashMap * map) {
   Pair **oldBuckets = map->buckets; // preservar buckets
   long originalCapacity = map->capacity; // preservar capacidad
-  map->capacity = map->capacity *=2; // duplicar capacidad
+  map->capacity *=2; // duplicar capacidad
   map->buckets = (Pair **)calloc(map->capacity, sizeof(Pair *)); // crear nuevo arreglo con nueva capacidad
   for(int i = 0; i < originalCapacity; i++){ // recorrer para mover los buckets nuevos 
     if (oldBuckets[i] != NULL && oldBuckets[i]->key != NULL) {
